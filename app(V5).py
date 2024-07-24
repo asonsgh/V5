@@ -480,3 +480,90 @@ final_video = CompositeVideoClip([video] + clips)
 finalvideoname = active_folder++final.mp4
 # Write the result to a file
 final_video.write_videofile(finalvideoname, codec=libx264,audio_codec=aac)
+
+
+
+####################################
+# WEBUI
+###################################
+# import gradio as gr
+
+# def save_secrets():
+#     return "Secrets saved successfully!"
+
+# def generate_video():
+#     return "Video generated successfully!"
+
+# def update_video_settings(video_source):
+#     if video_source == "Image Model":
+#         return gr.Dropdown.update(visible=True), gr.Checkbox.update(visible=True)
+#     else:
+#         return gr.Dropdown.update(visible=False), gr.Checkbox.update(visible=True)
+
+# def update_image_input(use_image):
+#     return gr.Number.update(visible=use_image)
+
+# with gr.Blocks(theme=gr.themes.Base()) as demo:
+#     gr.Markdown("# SocialGPT")
+    
+#     with gr.Accordion("Secrets", open=False):
+#         with gr.Row():
+#             with gr.Column(scale=4):
+#                 pexel_key = gr.Textbox(label="PEXEL_API_KEY", placeholder="Enter Pexel API Key")
+#                 elevenlabs_key = gr.Textbox(label="ELEVENLABS_API_KEY", placeholder="Enter ElevenLabs API Key")
+#                 google_key = gr.Textbox(label="GOOGLE_API_KEY", placeholder="Enter Google API Key")
+#                 openai_key = gr.Textbox(label="OPENAI_API_KEY", placeholder="Enter OpenAI API Key")
+#                 assembly_key = gr.Textbox(label="ASSEMBLY_API_KEY", placeholder="Enter Assembly API Key")
+#             with gr.Column(scale=1):
+#                 save_button = gr.Button("Save", size="lg")
+    
+#     with gr.Row():
+#         # First column
+#         with gr.Column(scale=1, min_width=300):
+#             with gr.Box():
+#                 gr.Markdown("### Script Settings")
+#                 subject = gr.Textbox(label="Video Subject", lines=1, value="Make Money Online")
+#                 llm = gr.Dropdown(["gpt4", "gpt35_turbo", "llama2_7b", "llama2_13b", "llama2_70b", "mixtral_8x7b", "google"], label="LLM", value="google")
+#                 prompter = gr.Dropdown(["gpt4", "gpt35_turbo", "llama2_7b", "llama2_13b", "llama2_70b", "mixtral_8x7b", "google"], label="Prompter", value="google")
+#                 watermark = gr.Textbox(label="Watermark", value="SocialGPT")
+#                 watermark_position = gr.Dropdown(["Top", "Bottom", "Left", "Right", "Center"], label="Watermark Position", value="Bottom")
+        
+#         # Second column
+#         with gr.Column(scale=1, min_width=300):
+#             with gr.Box():
+#                 gr.Markdown("### Audio Settings")
+#                 tts = gr.Dropdown(["Elevenlabs", "Edge", "Coqui", "OpenAI"], label="TTS", value="Elevenlabs")
+#                 language = gr.Dropdown(["English", "Hindi", "Chinese", "Urdu", "Arabic"], label="Language", value="English")
+#                 voice = gr.Dropdown(["Adam", "Antoni", "Bella"], label="Voice", value="Antoni")
+#                 bg_music_volume = gr.Slider(minimum=0, maximum=1, value=0.2, step=0.1, label="Background Music Volume")
+            
+#             with gr.Box():
+#                 gr.Markdown("### Video Settings")
+#                 video_source = gr.Dropdown(["Pexel", "Image Model"], label="Video Source", value="Pexel")
+#                 image_model = gr.Dropdown(["v1", "v2", "v3 (DALL-E)", "lexica", "prodia", "simurg", "animefy", "raava", "shonin"], label="Image Model", visible=False, value="v3 (DALL-E)")
+#                 aspect_ratio = gr.Dropdown(["Landscape 1920x1080 (Youtube)", "Portrait 1080x1920", "Square 1080x1080"], label="Aspect Ratio", value="Landscape 1920x1080 (Youtube)")
+#                 use_image = gr.Checkbox(label="Use Image", value=False)
+#                 image_input = gr.Number(label="Number of Images", minimum=1, maximum=25, value=1, visible=False)
+        
+#         # Third column
+#         with gr.Column(scale=1, min_width=300):
+#             with gr.Box():
+#                 gr.Markdown("### Subtitle Settings")
+#                 enable_subtitles = gr.Checkbox(label="Enable Subtitles", value=True)
+#                 subtitle_font = gr.Dropdown(["MicrosoftYaHei"], label="Font", value="MicrosoftYaHei")
+#                 subtitle_position = gr.Dropdown(["Top", "Bottom", "Left", "Right", "Center"], label="Position", value="Bottom")
+#                 subtitle_color = gr.ColorPicker(label="Font Color", value="#ffffff")
+#                 subtitle_size = gr.Slider(minimum=0, maximum=100, value=40, step=1, label="Font Size")
+#                 subtitle_outline = gr.Checkbox(label="Outline Color", value=False)
+#                 subtitle_outline_width = gr.Slider(minimum=0, maximum=20, value=0, step=1, label="Outline Width")
+
+#     generate_button = gr.Button("Generate Video", variant="primary")
+#     output = gr.Textbox(label="Output")
+
+#     save_button.click(fn=save_secrets, outputs=output)
+#     generate_button.click(fn=generate_video, outputs=output)
+    
+#     video_source.change(fn=update_video_settings, inputs=video_source, outputs=[image_model, use_image])
+#     use_image.change(fn=update_image_input, inputs=use_image, outputs=image_input)
+
+# demo.launch()
