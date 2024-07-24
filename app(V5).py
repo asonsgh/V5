@@ -8,6 +8,36 @@ from pprint import pprint
 import time
 from json import JSONDecodeError
 
+
+
+# Function to fetch topic and goal.
+def fetch_topic_and_goal(niche, goal_description):
+    prompt = f"""
+    You are an expert in creating engaging video content. Based on the niche '{niche}', generate a specific and unique topic for a video. The goal of the video should be '{goal_description}'.
+    """
+    try:
+        response = g4f.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are an expert video content creator."},
+                {"role": "user", "content": prompt}
+            ],
+            temperature=1.0,
+            max_tokens=200,
+            top_p=1,
+            stream=False
+        )
+        output = json.loads(response)
+        topic = output.get('topic', 'Default Topic')
+        goal = output.get('goal', 'Default Goal')
+        return topic, goal
+    except (JSONDecodeError, Exception) as e:
+        print(f"Error: {e}. Retrying...")
+        time.sleep(1)
+    raise Exception("Failed to fetch topic and goal.")
+
+
+
 def fetch_imagedescription_and_script(prompt)
     max_retries = 25
     for i in range(max_retries)
